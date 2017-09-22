@@ -3,16 +3,18 @@ package annotation;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
-@DiscriminatorValue("VIP")
+@PrimaryKeyJoinColumn(name="id")
+//@DiscriminatorValue("VIP")
 public class CustomerVIP extends Customer {
 	@Column(name = "chvFreq")
 	private String frequency;
 
-//	public CustomerVIP() {
-//
-//	}
+	public CustomerVIP() {
+
+	}
 
 	public CustomerVIP(String firstname, String surname, int age, String frequency) {
 		super(firstname, surname, age);

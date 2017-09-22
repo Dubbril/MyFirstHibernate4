@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Embeddable;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -11,11 +13,16 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
+//@Entity
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//@DiscriminatorColumn(name = "chvType", discriminatorType = DiscriminatorType.STRING)
+//@DiscriminatorValue("NON-VIP")
+
+
+
+//@Inheritance(strategy=InheritanceType.JOINED)
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "chvType", discriminatorType = DiscriminatorType.STRING)
-@DiscriminatorValue("NON-VIP")
-@Table(name = "customer")
+@Table(name = "Customer")
 public class Customer {
 	@Id
 	@GeneratedValue
@@ -30,6 +37,23 @@ public class Customer {
 
 	@Column(name = "intAge")
 	private int age;
+	
+	@Embedded
+	private Address address;
+	
+	
+	
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public Customer() {
+		
+	}
 
 	public Customer(String firstname, String surname, int age) {
 		this.firstname = firstname;
